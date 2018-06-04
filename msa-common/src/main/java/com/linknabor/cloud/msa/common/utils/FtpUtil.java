@@ -21,11 +21,12 @@ public class FtpUtil {
 
     /**
      * 构造
-     * @param ftpAddress FTP地址
-     * @param ftpPort FTP端口
-     * @param ftpName FTP用户名
+     *
+     * @param ftpAddress  FTP地址
+     * @param ftpPort     FTP端口
+     * @param ftpName     FTP用户名
      * @param ftpPassWord FTP密码
-     * @param basePath FTP切换目录
+     * @param basePath    FTP切换目录
      */
     public FtpUtil(String ftpAddress, int ftpPort, String ftpName, String ftpPassWord, String basePath) {
         FTP_ADDRESS = ftpAddress;
@@ -37,13 +38,14 @@ public class FtpUtil {
 
     /**
      * 上传文件
-     * @param path 存放在FTP的路径
+     *
+     * @param path     存放在FTP的路径
      * @param filename 文件名称
-     * @param input 文件流
+     * @param input    文件流
      * @return
      */
     public boolean fileUpload(String path, String filename, InputStream input) {
-        FTPClient ftp=new FTPClient();
+        FTPClient ftp = new FTPClient();
         try {
             ftp.connect(FTP_ADDRESS, FTP_PORT);
             ftp.login(FTP_USERNAME, FTP_PASSWORD);
@@ -53,23 +55,23 @@ public class FtpUtil {
             //设置传输方式为流方式
             ftp.setFileTransferMode(FTP.STREAM_TRANSFER_MODE);
             //获取状态码，判断是否连接成功
-            if(!FTPReply.isPositiveCompletion(ftp.getReplyCode())) {
+            if (!FTPReply.isPositiveCompletion(ftp.getReplyCode())) {
                 throw new RuntimeException("FTP服务器拒绝连接");
             }
-            if(!ftp.changeWorkingDirectory(BASE_PATH)) {
+            if (!ftp.changeWorkingDirectory(BASE_PATH)) {
                 throw new RuntimeException("根目录不存在，需要创建");
             }
 
             //判断是否存在目录
-            if(!ftp.changeWorkingDirectory(path)) {
-                String[] dirs=path.split("/");
+            if (!ftp.changeWorkingDirectory(path)) {
+                String[] dirs = path.split("/");
                 //创建目录
                 for (String dir : dirs) {
-                    if(null == dir || "".equals(dir)) continue;
+                    if (null == dir || "".equals(dir)) continue;
                     //判断是否存在目录
-                    if(!ftp.changeWorkingDirectory(dir)) {
+                    if (!ftp.changeWorkingDirectory(dir)) {
                         //不存在则创建
-                        if(!ftp.makeDirectory(dir)) {
+                        if (!ftp.makeDirectory(dir)) {
                             throw new RuntimeException("子目录创建失败");
                         }
                         //进入新创建的目录
@@ -79,17 +81,17 @@ public class FtpUtil {
                 //设置上传文件的类型为二进制类型
                 ftp.setFileType(FTP.BINARY_FILE_TYPE);
                 //上传文件
-                if(!ftp.storeFile(filename, input)) {
+                if (!ftp.storeFile(filename, input)) {
                     return false;
                 }
                 input.close();
                 ftp.logout();
                 return true;
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
-        }finally {
-            if(ftp.isConnected()) {
+        } finally {
+            if (ftp.isConnected()) {
                 try {
                     ftp.disconnect();
                 } catch (IOException e) {
@@ -102,7 +104,8 @@ public class FtpUtil {
 
     /**
      * 下载文件
-     * @param filename 文件名
+     *
+     * @param filename  文件名
      * @param localPath 存放到本地路径
      */
     public boolean downloadFile(String filename, String localPath) {
@@ -117,21 +120,21 @@ public class FtpUtil {
             //设置传输方式为流方式
             ftp.setFileTransferMode(FTP.STREAM_TRANSFER_MODE);
             //获取状态码，判断是否连接成功
-            if(!FTPReply.isPositiveCompletion(ftp.getReplyCode())) {
+            if (!FTPReply.isPositiveCompletion(ftp.getReplyCode())) {
                 throw new RuntimeException("FTP服务器拒绝连接");
             }
             //判断是否存在目录
-            if(!ftp.changeWorkingDirectory(BASE_PATH)) {
+            if (!ftp.changeWorkingDirectory(BASE_PATH)) {
                 throw new RuntimeException("文件路径不存在：" + BASE_PATH);
             }
             //获取该目录所有文件
-            FTPFile[] files=ftp.listFiles();
+            FTPFile[] files = ftp.listFiles();
             for (FTPFile file : files) {
                 //判断是否有目标文件
                 //System.out.println("文件名"+file.getName()+"---"+name);
-                if(file.getName().equals(filename)) {
+                if (file.getName().equals(filename)) {
                     //如果找到，将目标文件复制到本地
-                    File localFile = new File(localPath+"/"+file.getName());
+                    File localFile = new File(localPath + "/" + file.getName());
                     OutputStream out = new FileOutputStream(localFile);
                     ftp.retrieveFile(file.getName(), out);
                     out.close();
@@ -141,8 +144,8 @@ public class FtpUtil {
             return true;
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }finally {
-            if(ftp.isConnected()) {
+        } finally {
+            if (ftp.isConnected()) {
                 try {
                     ftp.disconnect();
                 } catch (IOException e) {

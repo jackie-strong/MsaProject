@@ -16,10 +16,7 @@ public class ObjectValidUtil {
      * @return
      */
     public static boolean isValidShort(Short num) {
-        if (num == null || num.compareTo((short) 0) <= 0) {
-            return false;
-        }
-        return true;
+        return num != null && num.compareTo((short) 0) > 0;
     }
 
     public static boolean isInvalidShort(Short num) {
@@ -33,10 +30,7 @@ public class ObjectValidUtil {
      * @return
      */
     public static boolean isValidInteger(Integer num) {
-        if (num == null || num.compareTo(0) <= 0) {
-            return false;
-        }
-        return true;
+        return num != null && num.compareTo(0) > 0;
     }
 
     public static boolean isInvalidInteger(Integer num) {
@@ -50,10 +44,7 @@ public class ObjectValidUtil {
      * @return
      */
     public static boolean isValidLong(Long num) {
-        if (num == null || num.compareTo(0L) <= 0) {
-            return false;
-        }
-        return true;
+        return num != null && num.compareTo(0L) > 0;
     }
 
     public static boolean isInvalidLong(Long num) {
@@ -67,10 +58,7 @@ public class ObjectValidUtil {
      * @return
      */
     public static boolean isValidBigDecimal(BigDecimal num) {
-        if (num == null || num.compareTo(BigDecimal.ZERO) <= 0) {
-            return false;
-        }
-        return true;
+        return num != null && num.compareTo(BigDecimal.ZERO) > 0;
     }
 
     public static boolean isInvalidBigDecimal(BigDecimal num) {
@@ -92,10 +80,7 @@ public class ObjectValidUtil {
     }
 
     public static boolean isNull(Object obj) {
-        if (obj == null) {
-            return true;
-        }
-        return false;
+        return obj == null;
     }
 
     public static boolean isNotNull(Object obj) {
@@ -106,20 +91,14 @@ public class ObjectValidUtil {
         if (curPage == null) {
             return false;
         }
-        if (curPage.compareTo(1) < 0) {
-            return false;
-        }
-        return true;
+        return curPage.compareTo(1) >= 0;
     }
 
     public static boolean isValidCurPage(Long curPage) {
         if (curPage == null) {
             return false;
         }
-        if (curPage.compareTo(1L) < 0) {
-            return false;
-        }
-        return true;
+        return curPage.compareTo(1L) >= 0;
     }
 
     public static boolean isInvalidCurPage(Integer curPage) {
@@ -134,20 +113,14 @@ public class ObjectValidUtil {
         if (viewNumber == null) {
             return false;
         }
-        if (viewNumber.compareTo(0) <= 0) {
-            return false;
-        }
-        return true;
+        return viewNumber.compareTo(0) > 0;
     }
 
     public static boolean isValidViewNumber(Long viewNumber) {
         if (viewNumber == null) {
             return false;
         }
-        if (viewNumber.compareTo(0L) <= 0) {
-            return false;
-        }
-        return true;
+        return viewNumber.compareTo(0L) > 0;
     }
 
     public static boolean isInvalidViewNumber(Integer viewNumber) {
@@ -162,10 +135,7 @@ public class ObjectValidUtil {
         if (limit == null) {
             return false;
         }
-        if (limit.compareTo(0) <= 0) {
-            return false;
-        }
-        return true;
+        return limit.compareTo(0) > 0;
     }
 
     public static boolean isInvalidLimit(Integer limit) {

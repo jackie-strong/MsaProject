@@ -1,6 +1,6 @@
 package com.linknabor.cloud.msa.common.exception;
 
-public class BaseException extends RuntimeException{
+public class BaseException extends RuntimeException {
     private int status = 200;
 
     public int getStatus() {

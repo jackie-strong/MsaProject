@@ -20,8 +20,9 @@ public class JSONUtil {
     static {
         gsonBuilder();
     }
-    private static void gsonBuilder(){
-        gson = new GsonBuilder().registerTypeAdapter(ServletResponse.class,new ServletResponseAdapter()).create();
+
+    private static void gsonBuilder() {
+        gson = new GsonBuilder().registerTypeAdapter(ServletResponse.class, new ServletResponseAdapter()).create();
     }
 
     public static synchronized Gson newInstance() {
@@ -64,7 +65,8 @@ public class JSONUtil {
         }
         return list;
     }
-    static class ServletResponseAdapter implements JsonSerializer<ServletResponse>{
+
+    static class ServletResponseAdapter implements JsonSerializer<ServletResponse> {
         @Override
         public JsonElement serialize(ServletResponse servletResponse, Type type, JsonSerializationContext jsonSerializationContext) {
             return null;

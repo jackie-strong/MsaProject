@@ -5,7 +5,8 @@ import tk.mybatis.mapper.common.ids.SelectByIdsMapper;
 
 /**
  * 共通Mapper.
+ *
  * @param <T>
  */
-public interface CommonMapper<T> extends SelectByIdsMapper<T>,Mapper<T> {
+public interface CommonMapper<T> extends SelectByIdsMapper<T>, Mapper<T> {
 }
