@@ -32,7 +32,13 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="sp_base_sect" domainObjectName="Sp_base_sect" enableCountByExample="false"
+        <table tableName="crm_marketing_province" domainObjectName="Crm_marketing_province" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table tableName="crm_marketing_city" domainObjectName="Crm_marketing_city" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false"></table>
+        <table tableName="crm_marketing_region" domainObjectName="Crm_marketing_region" enableCountByExample="false"
                enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>
         <!-- 如果生成多长表，复制上面那行，修改表名即可-->

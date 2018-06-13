@@ -31,14 +31,13 @@ public class CashLiquidate implements LiquidateService {
     public List<LiquidateData> pullLiquidateFile(String liquidate_date) {
 
         List<Object> list = liquidateMapper.getLiquidateCashTrade("", liquidate_date, LiquidateConfigConstant.cashPayMethod);
-
-        List<LiquidateData> LiquidateData = new ArrayList<LiquidateData>();
+        LOGGER.info("size:"+ list.size());
+        List<LiquidateData> liquidateDataList = new ArrayList<LiquidateData>();
         for (int i =0; i<list.size(); i++) {
             LiquidateData data = new LiquidateData();
 
-            LiquidateData.add(data);
+            liquidateDataList.add(data);
         }
-
-        return LiquidateData;
+        return liquidateDataList;
     }
 }

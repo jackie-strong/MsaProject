@@ -32,8 +32,7 @@
         join sp_serve_bill_pay_trade trade on mch.trade_water_id = trade.trade_water_id
         join sp_serve_fee_water water on trade.trade_water_id = water.trade_water_id and water.trade_water_id =
         mch.trade_water_id
-        where water.acct_date <![CDATA[<=]]> #{liquidate_date} and
-
+        where water.acct_date <![CDATA[<=]]> #{liquidate_date}
         <if test="plat_channel != null and plat_channel !='' ">
             and trade.plat_channel = #{plat_channel}
         </if>

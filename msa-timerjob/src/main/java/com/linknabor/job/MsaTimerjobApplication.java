@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
-@EnableEurekaClient
-@EnableScheduling
+//@EnableEurekaClient
+//@EnableScheduling
 @MapperScan("com.linknabor.job.mapper")
-@EnableTransactionManagement //开启事务管理
+//@EnableTransactionManagement //开启事务管理
 public class MsaTimerjobApplication {
 
 	public static void main(String[] args) {
