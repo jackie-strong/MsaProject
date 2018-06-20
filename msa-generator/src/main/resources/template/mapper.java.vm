@@ -1,0 +1,14 @@
+package ${package}.mapper;
+
+import ${package}.entity.${className};
+import com.beyondsoft.rdc.cloud.msa.common.mapper.CommonMapper;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface ${className}Mapper extends CommonMapper<${className}> {
+	
+}

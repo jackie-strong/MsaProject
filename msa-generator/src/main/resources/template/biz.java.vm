@@ -1,0 +1,17 @@
+package ${package}.service;
+
+import org.springframework.stereotype.Service;
+
+import ${package}.entity.${className};
+import ${package}.mapper.${className}Mapper;
+import com.beyondsoft.rdc.cloud.msa.common.service.BaseService;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${className}Service extends BaseService<${className}Mapper,${className}> {
+}

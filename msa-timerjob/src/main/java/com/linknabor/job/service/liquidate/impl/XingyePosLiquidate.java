@@ -5,7 +5,6 @@ import com.linknabor.cloud.msa.common.exception.BaseException;
 import com.linknabor.cloud.msa.common.utils.DateUtils;
 import com.linknabor.cloud.msa.common.utils.PrimayKeyUtils;
 import com.linknabor.cloud.msa.common.utils.SignUtil;
-import com.linknabor.cloud.msa.common.utils.UUIDUtils;
 import com.linknabor.job.constant.LiquidateConfigConstant;
 import com.linknabor.job.mapper.LiquidateMapper;
 import com.linknabor.job.service.liquidate.LiquidateService;
@@ -93,7 +92,7 @@ public class XingyePosLiquidate implements LiquidateService {
         head.setTxn_time(DateUtils.getCurrentTimeStr("HHmmss"));
         head.setTxn_num(LiquidateConfigConstant.XingyePosTypeBindMch);    //具体交易号
         head.setNonce_str(PrimayKeyUtils.getRandomBy16());
-        head.setTxn_ssn(UUIDUtils.getUuid());    //流水号，全系统唯一。如果一次查询有多页，每次需要传不同的txn_ssn号
+        head.setTxn_ssn(PrimayKeyUtils.getUuid());    //流水号，全系统唯一。如果一次查询有多页，每次需要传不同的txn_ssn号
 
         ReqBody reqBody = new ReqBody();
         reqBody.setMer_agent_code(LiquidateConfigConstant.XingyePosChannelNo);    //渠道编号
@@ -129,7 +128,7 @@ public class XingyePosLiquidate implements LiquidateService {
             reqBody.setQuery_end_date(mch_info.getAcct_date()); //查询结束日期
             reqBody.setPage_size(LiquidateConfigConstant.XingyePosQueryPageSize); //每页条数
             reqBody.setCurrent_page(String.valueOf(beginPage));    //当前页数
-            head.setTxn_ssn(UUIDUtils.getUuid());    //流水号，全系统唯一。如果一次查询有多页，每次需要传不同的txn_ssn号
+            head.setTxn_ssn(PrimayKeyUtils.getUuid());    //流水号，全系统唯一。如果一次查询有多页，每次需要传不同的txn_ssn号
 
             XingyePosLiquidateReq<ReqBody> req = new XingyePosLiquidateReq<ReqBody>();
 

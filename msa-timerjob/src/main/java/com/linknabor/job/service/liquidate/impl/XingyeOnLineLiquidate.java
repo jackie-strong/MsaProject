@@ -2,9 +2,9 @@ package com.linknabor.job.service.liquidate.impl;
 
 
 import com.linknabor.cloud.msa.common.exception.BaseException;
+import com.linknabor.cloud.msa.common.utils.PrimayKeyUtils;
 import com.linknabor.cloud.msa.common.utils.SignUtil;
 import com.linknabor.cloud.msa.common.utils.StringHelper;
-import com.linknabor.cloud.msa.common.utils.UUIDUtils;
 import com.linknabor.job.constant.LiquidateConfigConstant;
 import com.linknabor.job.mapper.LiquidateMapper;
 import com.linknabor.job.service.liquidate.LiquidateService;
@@ -75,7 +75,7 @@ public class XingyeOnLineLiquidate implements LiquidateService {
         String key = mch_info.getSecret(); //威富通支付密钥
         String liquidate_date = mch_info.getAcct_date(); //清算日期
 
-        String nonce_str = UUIDUtils.getUuid(); //获取唯一随机数
+        String nonce_str = PrimayKeyUtils.getUuid(); //获取唯一随机数
 
         Map map = new TreeMap<String, String>();
         map.put("bill_date", liquidate_date);

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linknabor.job.mapper.MsaCfgMchInfoMapper">
+  <resultMap id="BaseResultMap" type="com.linknabor.job.model.MsaCfgMchInfo">
+    <id column="MCH_ID" jdbcType="VARCHAR" property="mchId" />
+    <result column="MCH_STATE" jdbcType="CHAR" property="mchState" />
+    <result column="MCH_NO" jdbcType="VARCHAR" property="mchNo" />
+    <result column="MCH_SECRET_KEY" jdbcType="VARCHAR" property="mchSecretKey" />
+    <result column="APP_ID" jdbcType="CHAR" property="appId" />
+    <result column="PLAT_CHANNEL" jdbcType="CHAR" property="platChannel" />
+    <result column="OPEN_BANK_NAME" jdbcType="VARCHAR" property="openBankName" />
+    <result column="ACCOUNT_NAME" jdbcType="VARCHAR" property="accountName" />
+    <result column="BANK_ACCOUNT" jdbcType="VARCHAR" property="bankAccount" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="STORE_ID" jdbcType="BIGINT" property="storeId" />
+    <result column="CUST_ID" jdbcType="VARCHAR" property="custId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    MCH_ID, MCH_STATE, MCH_NO, MCH_SECRET_KEY, APP_ID, PLAT_CHANNEL, OPEN_BANK_NAME, 
+    ACCOUNT_NAME, BANK_ACCOUNT, REMARK, STORE_ID, CUST_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from msa_cfg_mch_info
+    where MCH_ID = #{mchId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByCustIdAndMchNo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from msa_cfg_mch_info
+    where CUST_ID = #{custId,jdbcType=VARCHAR}
+    and MCH_NO = #{mchNo,jdbcType=VARCHAR}
+    and MCH_STATE = '1'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from msa_cfg_mch_info
+    where MCH_ID = #{mchId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.linknabor.job.model.MsaCfgMchInfo">
+    insert into msa_cfg_mch_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mchId != null">
+        MCH_ID,
+      </if>
+      <if test="mchState != null">
+        MCH_STATE,
+      </if>
+      <if test="mchNo != null">
+        MCH_NO,
+      </if>
+      <if test="mchSecretKey != null">
+        MCH_SECRET_KEY,
+      </if>
+      <if test="appId != null">
+        APP_ID,
+      </if>
+      <if test="platChannel != null">
+        PLAT_CHANNEL,
+      </if>
+      <if test="openBankName != null">
+        OPEN_BANK_NAME,
+      </if>
+      <if test="accountName != null">
+        ACCOUNT_NAME,
+      </if>
+      <if test="bankAccount != null">
+        BANK_ACCOUNT,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="storeId != null">
+        STORE_ID,
+      </if>
+      <if test="custId != null">
+        CUST_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mchId != null">
+        #{mchId,jdbcType=BIGINT},
+      </if>
+      <if test="mchState != null">
+        #{mchState,jdbcType=CHAR},
+      </if>
+      <if test="mchNo != null">
+        #{mchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mchSecretKey != null">
+        #{mchSecretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=CHAR},
+      </if>
+      <if test="platChannel != null">
+        #{platChannel,jdbcType=CHAR},
+      </if>
+      <if test="openBankName != null">
+        #{openBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="custId != null">
+        #{custId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.linknabor.job.model.MsaCfgMchInfo">
+    update msa_cfg_mch_info
+    <set>
+      <if test="mchState != null">
+        MCH_STATE = #{mchState,jdbcType=CHAR},
+      </if>
+      <if test="mchNo != null">
+        MCH_NO = #{mchNo,jdbcType=VARCHAR},
+      </if>
+      <if test="mchSecretKey != null">
+        MCH_SECRET_KEY = #{mchSecretKey,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        APP_ID = #{appId,jdbcType=CHAR},
+      </if>
+      <if test="platChannel != null">
+        PLAT_CHANNEL = #{platChannel,jdbcType=CHAR},
+      </if>
+      <if test="openBankName != null">
+        OPEN_BANK_NAME = #{openBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="accountName != null">
+        ACCOUNT_NAME = #{accountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccount != null">
+        BANK_ACCOUNT = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        STORE_ID = #{storeId,jdbcType=BIGINT},
+      </if>
+      <if test="custId != null">
+        CUST_ID = #{custId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where MCH_ID = #{mchId,jdbcType=VARCHAR}
+  </update>
+</mapper>

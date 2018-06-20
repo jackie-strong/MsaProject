@@ -10,6 +10,8 @@
         <option value="$PROJECT_DIR$/msa-config/pom.xml" />
         <option value="$PROJECT_DIR$/msa-registry/pom.xml" />
         <option value="$PROJECT_DIR$/msa-timerjob/pom.xml" />
+        <option value="$PROJECT_DIR$/msa-crmpro/pom.xml" />
+        <option value="$PROJECT_DIR$/msa-generator/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

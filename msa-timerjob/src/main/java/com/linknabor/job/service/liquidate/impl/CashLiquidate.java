@@ -4,15 +4,10 @@ import com.linknabor.job.constant.LiquidateConfigConstant;
 import com.linknabor.job.mapper.LiquidateMapper;
 import com.linknabor.job.service.liquidate.LiquidateService;
 import com.linknabor.job.service.liquidate.model.LiquidateData;
-import com.linknabor.job.service.liquidate.model.MchInfo;
-import com.linknabor.job.service.liquidate.model.xingye.pos.AcctDetailTrade;
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 

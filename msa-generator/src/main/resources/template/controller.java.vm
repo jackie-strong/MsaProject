@@ -1,0 +1,19 @@
+package ${package}.controller;
+
+import com.beyondsoft.rdc.cloud.msa.common.controller.BaseController;
+import ${package}.service.${className}Service;
+import ${package}.entity.${className};
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("${secondModuleName}")
+public class ${className}Controller extends BaseController<${className}Service,${className}> {
+
+}

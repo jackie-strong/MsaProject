@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.linknabor.job.mapper.LiquidateMapper">
-    <resultMap id="BaseResultMap" type="com.linknabor.job.model.MchInfo">
+    <resultMap id="BaseResultMap" type="com.linknabor.job.service.liquidate.model.MchInfo">
         <result column="mch_id" jdbcType="VARCHAR" property="mch_id"/>
         <result column="secret" jdbcType="VARCHAR" property="secret"/>
         <result column="acct_date" jdbcType="VARCHAR" property="acct_date"/>

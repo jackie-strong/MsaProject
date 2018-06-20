@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.linknabor.job.mapper.MsaBaseCustInfoMapper">
+  <resultMap id="BaseResultMap" type="com.linknabor.job.model.MsaBaseCustInfo">
+    <id column="CUST_ID" jdbcType="VARCHAR" property="custId" />
+    <result column="CUST_STATE" jdbcType="CHAR" property="custState" />
+    <result column="CUST_NAME" jdbcType="VARCHAR" property="custName" />
+    <result column="CUST_ADDR" jdbcType="VARCHAR" property="custAddr" />
+    <result column="CUST_TEL" jdbcType="VARCHAR" property="custTel" />
+    <result column="REMARK" jdbcType="VARCHAR" property="remark" />
+    <result column="PROVINCE_ID" jdbcType="BIGINT" property="provinceId" />
+    <result column="CITY_ID" jdbcType="BIGINT" property="cityId" />
+    <result column="REGION_ID" jdbcType="BIGINT" property="regionId" />
+    <result column="APPID" jdbcType="CHAR" property="appId" />
+    <result column="ORIGIN_ID" jdbcType="VARCHAR" property="originId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CUST_ID, CUST_STATE, CUST_NAME, CUST_ADDR, CUST_TEL, REMARK, PROVINCE_ID, CITY_ID, 
+    REGION_ID, SYSTEM_ID, ORIGIN_ID, CUST_SOURCE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from msa_base_cust_info
+    where CUST_ID = #{custId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByOriginId" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from msa_base_cust_info
+    where ORIGIN_ID = #{originId,jdbcType=VARCHAR}
+    and APPID = #{appId,jdbcType=VARCHAR}
+    and CUST_STATE = '0'
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from msa_base_cust_info
+    where CUST_ID = #{custId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.linknabor.job.model.MsaBaseCustInfo">
+    insert into msa_base_cust_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="custId != null">
+        CUST_ID,
+      </if>
+      <if test="custState != null">
+        CUST_STATE,
+      </if>
+      <if test="custName != null">
+        CUST_NAME,
+      </if>
+      <if test="custAddr != null">
+        CUST_ADDR,
+      </if>
+      <if test="custTel != null">
+        CUST_TEL,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+      <if test="provinceId != null">
+        PROVINCE_ID,
+      </if>
+      <if test="cityId != null">
+        CITY_ID,
+      </if>
+      <if test="regionId != null">
+        REGION_ID,
+      </if>
+      <if test="systemId != null">
+        SYSTEM_ID,
+      </if>
+      <if test="originId != null">
+        ORIGIN_ID,
+      </if>
+      <if test="custSource != null">
+        CUST_SOURCE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="custId != null">
+        #{custId,jdbcType=VARCHAR},
+      </if>
+      <if test="custState != null">
+        #{custState,jdbcType=CHAR},
+      </if>
+      <if test="custName != null">
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custAddr != null">
+        #{custAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="custTel != null">
+        #{custTel,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null">
+        #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null">
+        #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="regionId != null">
+        #{regionId,jdbcType=BIGINT},
+      </if>
+      <if test="systemId != null">
+        #{systemId,jdbcType=CHAR},
+      </if>
+      <if test="originId != null">
+        #{originId,jdbcType=VARCHAR},
+      </if>
+      <if test="custSource != null">
+        #{custSource,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.linknabor.job.model.MsaBaseCustInfo">
+    update msa_base_cust_info
+    <set>
+      <if test="custState != null">
+        CUST_STATE = #{custState,jdbcType=CHAR},
+      </if>
+      <if test="custName != null">
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="custAddr != null">
+        CUST_ADDR = #{custAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="custTel != null">
+        CUST_TEL = #{custTel,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceId != null">
+        PROVINCE_ID = #{provinceId,jdbcType=BIGINT},
+      </if>
+      <if test="cityId != null">
+        CITY_ID = #{cityId,jdbcType=BIGINT},
+      </if>
+      <if test="regionId != null">
+        REGION_ID = #{regionId,jdbcType=BIGINT},
+      </if>
+      <if test="systemId != null">
+        SYSTEM_ID = #{systemId,jdbcType=CHAR},
+      </if>
+      <if test="originId != null">
+        ORIGIN_ID = #{originId,jdbcType=VARCHAR},
+      </if>
+      <if test="custSource != null">
+        CUST_SOURCE = #{custSource,jdbcType=CHAR},
+      </if>
+    </set>
+    where CUST_ID = #{custId,jdbcType=VARCHAR}
+  </update>
+</mapper>
