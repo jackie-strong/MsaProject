@@ -5,6 +5,8 @@ public class BaseMode {
 
     private String appId;
 
+    private String sign;
+
     public String getOriginId() {
         return originId;
     }
@@ -19,5 +21,13 @@ public class BaseMode {
 
     public void setAppId(String appId) {
         this.appId = appId;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 }

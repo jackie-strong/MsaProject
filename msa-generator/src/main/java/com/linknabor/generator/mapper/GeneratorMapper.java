@@ -1,11 +1,11 @@
 package com.linknabor.generator.mapper;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
-@Component
+@Repository
 public interface GeneratorMapper {
 	
 	List<Map<String, Object>> queryList(Map<String, Object> map);

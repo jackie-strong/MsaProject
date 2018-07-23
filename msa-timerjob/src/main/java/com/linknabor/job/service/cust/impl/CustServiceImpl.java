@@ -2,6 +2,7 @@ package com.linknabor.job.service.cust.impl;
 
 import com.linknabor.cloud.msa.common.exception.BaseException;
 import com.linknabor.cloud.msa.common.utils.PrimayKeyUtils;
+import com.linknabor.cloud.msa.common.utils.SignUtil;
 import com.linknabor.job.codes.InfoStatus;
 import com.linknabor.job.codes.OperatorType;
 import com.linknabor.job.mapper.MsaBaseCustInfoMapper;
@@ -11,6 +12,7 @@ import com.linknabor.job.model.MsaBaseCustInfo;
 import com.linknabor.job.model.MsaCfgMchInfo;
 import com.linknabor.job.model.MsaCfgSystemInfo;
 import com.linknabor.job.service.cust.CustService;
+import com.linknabor.job.service.cust.impl.vo.CustReq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,11 +36,30 @@ public class CustServiceImpl implements CustService{
     @Override
     public int synCustInfo(MsaBaseCustInfo custInfo) {
         int flag = 0;
+
+        String appid = custReq.getAppid(); //应用ID
+        MsaBaseCustInfo custInfo = custReq.getData(); //客户信息
+        String sign = custReq.getSign(); //加密信息
+
+        //1.根据appid查询当前请求是否在授权表中
+        MsaCfgSystemInfo systemInfo = msaCfgSystemInfoMapper.selectByPrimaryKey(appid);
+        if(systemInfo == null) {
+            throw new BaseException("请求appid不正确，请传入正确参数");
+        }
+
+        String appKey = systemInfo.getAppkey();
+        //校验签名
+
+
+
         if (null != custInfo) {
             //1.根据appid查询当前请求是否在授权表中
             MsaCfgSystemInfo systemInfo = msaCfgSystemInfoMapper.selectByPrimaryKey(custInfo.getAppId());
             //如果存在，则继续往下执行，否则返回错误
             if(systemInfo != null) {
+                //校验签名
+                String appKey = systemInfo.getAppkey();
+
                 MsaBaseCustInfo checkCustInfo = msaBaseCustInfoMapper.selectByOriginId(custInfo.getOriginId(), custInfo.getAppId());
 
                 //获取当前需要同步的数据状态
@@ -55,7 +76,7 @@ public class CustServiceImpl implements CustService{
                         custInfo.setCustId(PrimayKeyUtils.getUuid());
                         flag = msaBaseCustInfoMapper.insertSelective(custInfo);
                     }
-                }else if(OperatorType.ShanChu.toString().equals(cust_state)) { //删除
+                } else if(OperatorType.ShanChu.toString().equals(cust_state)) { //删除
                     if (!StringUtil.isEmpty(checkCustInfo.getCustId())) {
                         flag = msaBaseCustInfoMapper.deleteByPrimaryKey(checkCustInfo.getCustId());
                     }
